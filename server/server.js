@@ -1,9 +1,10 @@
 
-
+//import express
+// express function is given!
 
 const express = require ('express');
 
-const app = express;
+const app = express();
 
 const PORT = 5000;
 
