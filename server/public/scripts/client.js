@@ -17,8 +17,26 @@ function readyNow() {
 
 }
 
+
+
 function addNum () {
-    console.log('clicking addNum');
+    console.log('clicking addNum');    
+    
+    let addition = {
+        input1: $('#num1').val(),
+        input2: $('#num2').val(),
+    }
+    
+    $.ajax({
+        method: 'POST',
+        url: '/calc',
+        data: addition,
+
+    }).then(function(response){
+        console.log(response);
+
+        // getCalculations();
+    })
 }
 function subtractNum () {
     console.log('clicking subtracNum');
@@ -31,7 +49,14 @@ function divideNum () {
 }
 function sumCall () {
     console.log('clicking sumCall');
-}
+    
+    
+    
+    $('#num1').val(''),
+    $('#num2').val('');
+
+};
+
 function clearNum () {
     console.log('clicking clearNum');
 }

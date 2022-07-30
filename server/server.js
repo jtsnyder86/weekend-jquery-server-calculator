@@ -8,6 +8,8 @@ const app = express();
 
 const PORT = 5000;
 
+let calculations = []
+
 
 app.use(express.urlencoded({extended: true}));
 
@@ -15,20 +17,23 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static('server/public'));
 
 
-app.get('/calc', function (req, res)
+app.get('/calc', function (req, res){
     console.log('GET /calc');
 
     res.send(calculations);
-);
+});
 
-app.post('/calc', function (req, res)
+app.post('/calc', function (req, res){
     console.log('POST /calc');
 
+    console.log(req.body);
+    calculations.push(req.body);
+    res.sendStatus(200) //OK
+});
 
+function calculate() {
     
-)
-
-
+}
 
 
 
