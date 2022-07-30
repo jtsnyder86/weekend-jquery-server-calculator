@@ -15,7 +15,18 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static('server/public'));
 
 
+app.get('/calc', function (req, res)
+    console.log('GET /calc');
 
+    res.send(calculations);
+);
+
+app.post('/calc', function (req, res)
+    console.log('POST /calc');
+
+
+    
+)
 
 
 
