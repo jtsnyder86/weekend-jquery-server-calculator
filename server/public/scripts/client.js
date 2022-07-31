@@ -13,7 +13,7 @@ function readyNow() {
     $('#equals').on('click', sumCall)
     $('#clear').on('click', clearNum)
 
-    getCalculation()
+    // getCalculation()
 
 }
 
@@ -83,8 +83,9 @@ function sumCall () {
     }).then(function(response){
         console.log(response);
 
-        
+        getCalculation();
     });
+    
     
     renderDOM();
     $('#num1').val('');
@@ -101,28 +102,22 @@ function clearNum () {
 function renderDOM() {
     console.log('rendering to the DOM');
     
-        $('#history').append(`
+        $('#history').prepend(`
         <li>${input1} ${operator} ${input2} = </li>
         `);
         
-        // for(let answer of answers) {
-        //     $('.container').empty();
-        //     $('.container').append(`
-        //     <h1>${answers[i]}
-        //     `)
-        // }
-
 }
 
 function displayAnswer(answers) {
     console.log('in display');
     
-    $('.answer').empty();
+    
 
     for(let answer of answers) {        
+        $('.container').empty()
         
-        $('.answer').append(`
-        ${answer.ans}
+        $('.container').append(`
+        <h1>${answer.ans}</h1>
         `)
     }
 }
