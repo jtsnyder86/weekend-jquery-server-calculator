@@ -80,7 +80,6 @@ function sumCall () {
         method: 'POST',
         url: '/calc',
         data: equation,
-
     }).then(function(response){
         console.log(response);
 
@@ -117,11 +116,13 @@ function renderDOM() {
 
 function displayAnswer(answers) {
     console.log('in display');
+    
+    $('.answer').empty();
 
-    for(let answer of answers) {
-        $('.container').empty();
-        $('.container').append(`
-        <h1>${answer}</h1>
+    for(let answer of answers) {        
+        
+        $('.answer').append(`
+        ${answer.ans}
         `)
     }
 }

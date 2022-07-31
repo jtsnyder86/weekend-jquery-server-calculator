@@ -31,19 +31,22 @@ app.post('/calc', function (req, res){
     calculations.push(req.body);
     
     calculate()
-    
+
     res.sendStatus(200) //OK
 });
 
-function calculate(calculations) {
+function calculate() {
     console.log('calculating');
     let answer;
-    for (let property in calculations) {
-        if (property[op] == '+'){
-            answer = Number(calculations[input1]) + Number(calculations[input2])
+    for (let property of calculations) {
+        if (property.op == '+'){
+            answer = Number(property.num1) + Number(property.num2)
         }
     }
-    return answers.push(answer);
+    console.log(answer);
+    return answers.push({ans : answer});
+    
+    
 }
 
 
