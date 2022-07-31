@@ -13,8 +13,7 @@ function readyNow() {
     $('#equals').on('click', sumCall)
     $('#clear').on('click', clearNum)
 
-    // renderDOM()
-    // getCalculations()
+    getCalculation()
 
 }
 
@@ -22,6 +21,18 @@ let input1 = ''
 let input2 = ''
 let operator = '';
 
+function getCalculation() {
+    console.log('in get calculations');
+
+    $.ajax({
+        method: 'GET',
+        url: '/calc',
+    }).then (function(response) {
+        console.log(response);
+        displayAnswer(response);
+    })
+    
+}
 
 function addNum () {
     console.log('clicking addNum');    
@@ -93,5 +104,24 @@ function renderDOM() {
     
         $('#history').append(`
         <li>${input1} ${operator} ${input2} = </li>
+        `);
+        
+        // for(let answer of answers) {
+        //     $('.container').empty();
+        //     $('.container').append(`
+        //     <h1>${answers[i]}
+        //     `)
+        // }
+
+}
+
+function displayAnswer(answers) {
+    console.log('in display');
+
+    for(let answer of answers) {
+        $('.container').empty();
+        $('.container').append(`
+        <h1>${answer}</h1>
         `)
+    }
 }
