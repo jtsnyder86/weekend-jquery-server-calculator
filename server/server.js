@@ -8,7 +8,10 @@ const app = express();
 
 const PORT = 5000;
 
+// data posted from client pushed to this array for use in calculating answers
 let calculations = []
+
+// array for answers to display on DOM when GET requested
 let answers = []
 
 app.use(express.urlencoded({extended: true}));
@@ -34,17 +37,23 @@ app.post('/calc', function (req, res){
 
     res.sendStatus(200) //OK
 });
-
+// function to run calculation on server side depending on the operation used
 function calculate() {
     console.log('calculating');
     let answer;
     for (let property of calculations) {
         if (property.op == '+'){
             answer = Number(property.num1) + Number(property.num2)
+        } else if (property.op == '-'){
+            answer = Number(property.num1) - Number(property.num2)
+        } else if (property.op == '*'){
+            answer = Number(property.num1) * Number(property.num2)
+        } else if (property.op == '/'){
+            answer = Number(property.num1) / Number(property.num2)
         }
     }
     console.log(answer);
-    return answers.push({ans : answer});
+    return answers.push({ans : answer}); // pushes calculated answers to array (answers)
     
     
 }
