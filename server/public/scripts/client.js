@@ -13,33 +13,39 @@ function readyNow() {
     $('#equals').on('click', sumCall)
     $('#clear').on('click', clearNum)
 
-
+    // renderDOM()
+    // getCalculations()
 
 }
 
+let input1 = ''
+let input2 = ''
+let operator = '';
 
 
 function addNum () {
     console.log('clicking addNum');    
-    
-    let addition = {
-        input1: $('#num1').val(),
-        input2: $('#num2').val(),
-    }
-    
-    $.ajax({
-        method: 'POST',
-        url: '/calc',
-        data: addition,
+    // input1 = $('#num1').val();
+    // input2 = $('#num2').val();
+    operator = '+';
+    // let addition = {
+    //     num1: $('#num1').val(),
+    //     num2: $('#num2').val(),
+    // }
 
-    }).then(function(response){
-        console.log(response);
+    // $.ajax({
+    //     method: 'POST',
+    //     url: '/calc',
+    //     data: addition,
 
-        // getCalculations();
-    })
+    // }).then(function(response){
+    //     console.log(response);
+
+    //     getCalculations();
+    // })
 }
 function subtractNum () {
-    console.log('clicking subtracNum');
+    console.log('clicking subtractNum');
 }
 function multiplyNum () {
     console.log('clicking multiplyNum');
@@ -49,14 +55,43 @@ function divideNum () {
 }
 function sumCall () {
     console.log('clicking sumCall');
+    input1 = $('#num1').val();
+    input2 = $('#num2').val();
     
-    
-    
-    $('#num1').val(''),
-    $('#num2').val('');
 
+    let equation = {
+        num1: input1,
+        num2: input2,
+        op: operator
+    }
+
+    $.ajax({
+        method: 'POST',
+        url: '/calc',
+        data: equation,
+
+    }).then(function(response){
+        console.log(response);
+
+        
+    });
+    
+    renderDOM();
+    $('#num1').val('');
+    $('#num2').val('');
+    input1 = '';
+    input2 = '';    
+    operator = '';
 };
 
 function clearNum () {
     console.log('clicking clearNum');
+}
+
+function renderDOM() {
+    console.log('rendering to the DOM');
+    
+        $('#history').append(`
+        <li>${input1} ${operator} ${input2} = </li>
+        `)
 }
